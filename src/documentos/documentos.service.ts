@@ -30,7 +30,9 @@ export class DocumentosService {
 
   async download( documento: GetDocumentoDto ): Promise < Documentos | null > {
     try{
-        //const pathToDocument = path.join("./DirectorioUsuarios", documento.NombreUsuario , documento.nombreArchivo );
+        if (!fs.existsSync('./DirectorioPlantillas')) {
+          fs.mkdirSync('./DirectorioPlantillas', { recursive: true });
+        }
         const pathToDocument = path.join("./DirectorioPlantillas" ,  documento.nombreArchivo );
         const leerArchivo = fs.readFileSync( pathToDocument , "binary" ) ; 
         const zip = new PizZip(leerArchivo) ; 
