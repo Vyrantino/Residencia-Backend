@@ -1,4 +1,4 @@
 export const jwtConstant = {
-    secret: 'secret Seed' 
+    secret: process.env.SECRET
 }
     

@@ -9,23 +9,28 @@ import { Usuarios } from './usuarios/entities/usuario.entity';
 import { Plantilla } from './plantillas/entities/plantilla.entity';
 import { Documentos } from './documentos/entities/documento.entity';
 import { HttpModule } from '@nestjs/axios';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'SCGGOCCITD/'),
+    }),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
       port: 3306,
-      username: 'root',
-      password: 'root',
-      database: 'scggoccitd', 
+      username: process.env.BDUS,
+      password: process.env.BDPW,
+      database: 'oficios', 
       entities: [
         Usuarios,
         Plantilla,
         Documentos,
         HttpModule
       ],
-      synchronize: true,
+      synchronize: false,
     }),
     UsuariosModule, PlantillasModule, DocumentosModule],
   controllers: [AppController],
