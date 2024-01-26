@@ -20,6 +20,9 @@ const documento_entity_1 = require("./documentos/entities/documento.entity");
 const axios_1 = require("@nestjs/axios");
 const serve_static_1 = require("@nestjs/serve-static");
 const path_1 = require("path");
+const host = process.env.HOST || 'localhost';
+const password = process.env.BDPW;
+const usuario = process.env.BDUS;
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -31,10 +34,10 @@ exports.AppModule = AppModule = __decorate([
             }),
             typeorm_1.TypeOrmModule.forRoot({
                 type: 'mysql',
-                host: 'localhost',
+                host: host,
                 port: 3306,
-                username: process.env.BDUS,
-                password: process.env.BDPW,
+                username: usuario,
+                password: password,
                 database: 'oficios',
                 entities: [
                     usuario_entity_1.Usuarios,

@@ -1,4 +1,5 @@
+const secret = process.env.SECRET ;  
 export const jwtConstant = {
-    secret: process.env.SECRET
+    secret: secret
 }
     

@@ -11,6 +11,9 @@ import { Documentos } from './documentos/entities/documento.entity';
 import { HttpModule } from '@nestjs/axios';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+const host = process.env.HOST || 'localhost';
+const password = process.env.BDPW ;
+const usuario = process.env.BDUS ;
 
 @Module({
   imports: [
@@ -19,10 +22,10 @@ import { join } from 'path';
     }),
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
+      host: host,
       port: 3306,
-      username: process.env.BDUS,
-      password: process.env.BDPW,
+      username: usuario,
+      password: password,
       database: 'oficios', 
       entities: [
         Usuarios,
