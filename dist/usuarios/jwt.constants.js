@@ -1,8 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.jwtConstant = void 0;
-const secret = process.env.SECRET;
+const dotenv = require("dotenv");
+dotenv.config();
 exports.jwtConstant = {
-    secret: secret
+    secret: process.env.SECRET,
 };
 //# sourceMappingURL=jwt.constants.js.map

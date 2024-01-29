@@ -20,22 +20,26 @@ const documento_entity_1 = require("./documentos/entities/documento.entity");
 const axios_1 = require("@nestjs/axios");
 const serve_static_1 = require("@nestjs/serve-static");
 const path_1 = require("path");
+const config_1 = require("@nestjs/config");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            config_1.ConfigModule.forRoot({
+                isGlobal: true,
+            }),
             serve_static_1.ServeStaticModule.forRoot({
                 rootPath: (0, path_1.join)(__dirname, '..', 'SCGGOCCITD/'),
             }),
             typeorm_1.TypeOrmModule.forRoot({
-                type: 'mariadb',
-                host: '127.0.0.1',
+                type: 'mysql',
+                host: process.env.HOST,
                 port: 3306,
-                username: 'oficios',
-                password: '$password',
-                database: 'oficios',
+                username: process.env.BDUS,
+                password: process.env.BDPW,
+                database: 'scggoccitd',
                 entities: [
                     usuario_entity_1.Usuarios,
                     plantilla_entity_1.Plantilla,

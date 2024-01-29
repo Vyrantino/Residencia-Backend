@@ -11,19 +11,23 @@ import { Documentos } from './documentos/entities/documento.entity';
 import { HttpModule } from '@nestjs/axios';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { ConfigModule , } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true , 
+    }),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'SCGGOCCITD/'),
     }),
     TypeOrmModule.forRoot({
-      type: 'mariadb',
-      host: '127.0.0.1',
+      type: 'mysql',
+      host: process.env.HOST,
       port: 3306,
-      username: 'oficios',
-      password: '$password',
-      database: 'oficios', 
+      username: process.env.BDUS,
+      password: process.env.BDPW,
+      database: 'scggoccitd', 
       entities: [
         Usuarios,
         Plantilla,
