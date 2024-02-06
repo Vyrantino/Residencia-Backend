@@ -21,7 +21,7 @@ export class Plantilla {
 
     @ManyToOne( () => Usuarios, ( usuario ) => usuario.plantilla )
     @JoinColumn( { name: "idUsuario" } )
-    usuario: Usuarios; //Muchas plantillas pueden pertenecer a un solo departamento
+    usuario: Usuarios; 
 
     // @OneToMany( () => Documentos, ( documentos ) => documentos.plantilla , { cascade: true })
     // documentos: Documentos[] ; //Una plantilla puede corresponder a muchos documentos. 

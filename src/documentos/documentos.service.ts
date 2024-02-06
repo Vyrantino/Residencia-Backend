@@ -103,7 +103,8 @@ export class DocumentosService {
   async remove(id: number) {
     const documento = await this.documentosRepository.findOneBy({ idDocumento: id }) ;
     if (!fs.existsSync(documento.Route)) {
-      return null ;
+      console.log( 'El documento no se pudo encontrar en el directorio, sin embargo se procedera con la eliminacion en el registro' ) ;
+      return this.documentosRepository.delete( id );
     }
     fs.unlinkSync( documento.Route ) ;
     return this.documentosRepository.delete( id );
